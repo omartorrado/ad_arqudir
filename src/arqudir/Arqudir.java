@@ -41,7 +41,7 @@ public class Arqudir {
         //9- Borrar el archivo Products1.txt
         borrar("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir/Products1.txt");
         //10- Borrar todo
-        borrar("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir");
+        borrarRecursivo("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir");
     }
 
     //Los metodos creados a continuacion, tambien podrian recibir directamente un archivo en lugar de la ruta
@@ -147,17 +147,33 @@ public class Arqudir {
                 System.out.println("Se va a borrar el archivo " + archivo.getName());
                 archivo.delete();
             } else if (archivo.isDirectory()) {
+                System.out.println("Se va a borrar el directorio " + archivo.getName());
+                boolean check = archivo.delete();
+                if (check == false) {
+                    System.out.println("El directorio " + archivo.getName() + " no esta vacio, borrando contenido...");
+                }
+            }
+        }
+    }
+
+    public static void borrarRecursivo(String ruta) {
+        File archivo = new File(ruta);
+        if (archivo.exists()) {
+            if (archivo.isFile()) {
+                System.out.println("Se va a borrar el archivo " + archivo.getName());
+                archivo.delete();
+            } else if (archivo.isDirectory()) {
                 File[] listaArchivos = archivo.listFiles();
                 for (File x : listaArchivos) {
                     if (x.isFile()) {
                         System.out.println("Se va a borrar el archivo " + x.getName());
-                        boolean check = x.delete();
+                        x.delete();
                     } else {
                         System.out.println("Se va a borrar el directorio " + x.getName());
                         boolean check = x.delete();
                         if (check == false) {
                             System.out.println("El directorio " + x.getName() + " no esta vacio, borrando contenido...");
-                            borrar(x.getPath());
+                            borrarRecursivo(x.getPath());
                             System.out.println("Se han borrado los contenidos del directorio " + x.getName());
                         }
                     }
