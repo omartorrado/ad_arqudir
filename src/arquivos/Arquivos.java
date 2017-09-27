@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package arqudir;
+package arquivos;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,36 +12,37 @@ import java.io.IOException;
  *
  * @author otorradomiguez
  */
-public class Arqudir {
+public class Arquivos {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         //1,2- Crea el direcrtorio y el archivo, tambien compueba si ya han sido creados
-        crearDirectorio("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir");
-        crearArchivo("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir/Products1.txt");
+        crearDirectorio("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir");
+        crearArchivo("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir/Products1.txt");
         //3- Vuelvo a lanzar los mismos metodos para comprobar la creacion
-        checkExists("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir");
-        checkExists("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir/Products1.txt");
+        checkExists("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir");
+        checkExists("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir/Products1.txt");
         //4- creamos subdir y Products2.txt y comprobamos que existen
-        crearDirectorio("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir/subdir");
-        crearArchivo("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir/subdir/Products2.txt");
-        checkExists("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir/subdir");
-        checkExists("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir/subdir/Products2.txt");
+        crearDirectorio("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir/subdir");
+        crearArchivo("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir/subdir/Products2.txt");
+        checkExists("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir/subdir");
+        checkExists("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir/subdir/Products2.txt");
         //5- Listar los contenidos del directorio arquivosdir
-        verDirectorio("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir");
+        verDirectorio("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir");
         //6- Comprobar la ruta del primer directorio que creamos
-        verRuta("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir");
+        verRuta("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir");
         //7- Mostrar informacion del archivo Products1.txt
-        verInfoArchivo("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir/Products1.txt");
-        //8- Cambiar los permisos de lectura/escritura de un archivo
-        hacerSoloLectura("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir/Products1.txt");
-        hacerWritable("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir/Products1.txt");
+        verInfoArchivo("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir/Products1.txt");
+        //8- Cambiar los permisos de lectura de un archivo
+        hacerSoloLectura("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir/Products1.txt");
+        //9- Cambiar los permisos de escritura de un archivo
+        hacerWritable("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir/Products1.txt");
         //9- Borrar el archivo Products1.txt
-        borrar("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir/Products1.txt");
+        borrar("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir/Products1.txt");
         //10- Borrar todo
-        borrarRecursivo("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arqudir/arquivosdir");
+        borrarRecursivo("/home/local/DANIELCASTELAO/otorradomiguez/NetBeansProjects/arquivos/arquivosdir");
     }
 
     //Los metodos creados a continuacion, tambien podrian recibir directamente un archivo en lugar de la ruta
@@ -103,7 +104,7 @@ public class Arqudir {
         try {
             System.out.println(archivo.getCanonicalPath());
         } catch (IOException ex) {
-            Logger.getLogger(Arqudir.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Arquivos.class.getName()).log(Level.SEVERE, null, ex);
         }
              */
  /*
@@ -150,7 +151,7 @@ public class Arqudir {
                 System.out.println("Se va a borrar el directorio " + archivo.getName());
                 boolean check = archivo.delete();
                 if (check == false) {
-                    System.out.println("El directorio " + archivo.getName() + " no esta vacio, borrando contenido...");
+                    System.out.println("El directorio " + archivo.getName() + " no esta vacio");
                 }
             }
         }
